@@ -4,7 +4,7 @@
 // Punti fatti e falli subiti.
 // Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console.
 
-// ## FUNCTIONS
+// # FUNCTIONS
 const getRndNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -23,7 +23,7 @@ const findBiggestObject = (array, parameterString) => {
 }
 
 // find the smallest object in an array, based on one parameter
-const findSmallestObject = (array, parameterString) => {
+const findSmallestObjects = (array, parameterString) => {
     let smallest = array[0][`${parameterString}`];
     let smallestIndex = 0;
     for (let i = 0; i < array.length; i++) {
@@ -36,7 +36,7 @@ const findSmallestObject = (array, parameterString) => {
 }
 
 // Selection sort: sort object in a array based on one parameter and a choosen find function
-const selectionSortObject = (array, parameterString, findFunction) => {
+const selectionSortObjects = (array, parameterString, findFunction) => {
     let arrayCopy = [...array];
     let sortedArray = [];
     for (let i = 0; i < array.length; i++) {
@@ -84,9 +84,9 @@ for (let i = 0; i < teams.length; i++) {
 console.log("Teams names and their suffered fouls count", teamsFouls);
 
 // Teams Ranking based on scored points
-const teamsPointsRanking = selectionSortObject(teams, "scoredPoints", findBiggestObject);
+const teamsPointsRanking = selectionSortObjects(teams, "scoredPoints", findBiggestObject);
 console.log("Teams Ranking based on scored points", teamsPointsRanking);
 
 // Teams Ranking based on which suffered less fouls
-const teamsFoulsRanking = selectionSortObject(teams, "sufferedFouls", findSmallestObject);
+const teamsFoulsRanking = selectionSortObjects(teams, "sufferedFouls", findSmallestObject);
 console.log("Teams Ranking based on which suffered less fouls", teamsFoulsRanking);
