@@ -4,19 +4,59 @@
 // Punti fatti e falli subiti.
 // Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console.
 
+// ## FUNCTIONS
+const getRndNumber = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// find the biggest object in an array, based on one parameter
+const findBiggestObject = (array, parameterString) => {
+    let biggest = array[0][`${parameterString}`];
+    let biggestIndex = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i][`${parameterString}`] > biggest) {
+            biggest = array[i][`${parameterString}`];
+            biggestIndex = i;
+        }
+    }
+    return biggestIndex;
+}
+
+// find the smallest object in an array, based on one parameter
+const findSmallestObject = (array, parameterString) => {
+    let smallest = array[0][`${parameterString}`];
+    let smallestIndex = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i][`${parameterString}`] < smallest) {
+            smallest = array[i][`${parameterString}`];
+            smallestIndex = i;
+        }
+    }
+    return smallestIndex;
+}
+
+// Selection sort: sort object in a array based on one parameter and a choosen find function
+const selectionSortObject = (array, parameterString, findFunction) => {
+    let arrayCopy = [...array];
+    let sortedArray = [];
+    for (let i = 0; i < array.length; i++) {
+        sortedArray.push(arrayCopy.splice(findFunction(arrayCopy, parameterString), 1));
+    }
+    return sortedArray;
+}
+
+// # MAIN SCRIPT
+
 // Make array of team object
 const teams = [];
 
+// team object features
 class Team {
     constructor(name, scoredPoints, sufferedFouls) {
         this.name = name;
         this.scoredPoints = scoredPoints;
         this.sufferedFouls = sufferedFouls;
     }
-}
-
-const getRndNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // add 20 teams to the array
@@ -42,3 +82,11 @@ for (let i = 0; i < teams.length; i++) {
     teamsFouls.push(team);
 }
 console.log("Teams names and their suffered fouls count", teamsFouls);
+
+// Teams Ranking based on scored points
+const teamsPointsRanking = selectionSortObject(teams, "scoredPoints", findBiggestObject);
+console.log("Teams Ranking based on scored points", teamsPointsRanking);
+
+// Teams Ranking based on which suffered less fouls
+const teamsFoulsRanking = selectionSortObject(teams, "sufferedFouls", findSmallestObject);
+console.log("Teams Ranking based on which suffered less fouls", teamsFoulsRanking);
