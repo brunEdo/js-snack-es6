@@ -7,6 +7,7 @@ const mySlice = (array, min, max = array.length - 1) => {
         return i >= min && i <= max;
     });
 }
+// const mySlice = (array, min, max = array.length - 1) => array.filter((el, i) => i >= min && i <= max);
 
 const arrayTest = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 console.log("arrayTest", arrayTest);
