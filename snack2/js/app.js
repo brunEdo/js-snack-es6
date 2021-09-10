@@ -10,7 +10,7 @@ const getRndNumber = (min, max) => {
 }
 
 // find the biggest object in an array, based on one parameter
-const findBiggestObject = (array, parameterString) => {
+const findBiggestObjects = (array, parameterString) => {
     let biggest = array[0][`${parameterString}`];
     let biggestIndex = 0;
     for (let i = 0; i < array.length; i++) {
@@ -84,9 +84,9 @@ for (let i = 0; i < teams.length; i++) {
 console.log("Teams names and their suffered fouls count", teamsFouls);
 
 // Teams Ranking based on scored points
-const teamsPointsRanking = selectionSortObjects(teams, "scoredPoints", findBiggestObject);
+const teamsPointsRanking = selectionSortObjects(teams, "scoredPoints", findBiggestObjects);
 console.log("Teams Ranking based on scored points", teamsPointsRanking);
 
 // Teams Ranking based on which suffered less fouls
-const teamsFoulsRanking = selectionSortObjects(teams, "sufferedFouls", findSmallestObject);
+const teamsFoulsRanking = selectionSortObjects(teams, "sufferedFouls", findSmallestObjects);
 console.log("Teams Ranking based on which suffered less fouls", teamsFoulsRanking);
